@@ -6,42 +6,68 @@
 <title>Undangan Zilvi & Syamsul</title>
 
 <style>
-/* Dasar */
 *{box-sizing: border-box;}
 body{margin:0;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;background:black;color:white;text-align:center;overflow-x:hidden}
 
-/* LOADER - Dibuat agar pasti hilang dalam 2 detik */
+/* LOADER */
 #loader{position:fixed;width:100%;height:100%;background:black;display:flex;justify-content:center;align-items:center;z-index:99999}
 .loader-text{color:gold;font-size:24px;animation:fadeBlink 1s infinite}
 @keyframes fadeBlink{0%,100%{opacity:1}50%{opacity:.3}}
 
-/* ENVELOPE - Layer paling depan setelah loader */
+/* ENVELOPE */
 #envelope{position:fixed;width:100%;height:100%;background:#0a0a0a;display:flex;justify-content:center;align-items:center;z-index:1000}
-.envelope-wrapper{width:300px;height:220px;background:#1a1a1a;position:relative;border: 2px solid gold; border-radius: 15px; box-shadow: 0 0 20px rgba(212,175,55,0.3);}
+.envelope-wrapper{width:300px;height:220px;background:#1a1a1a;position:relative;border: 2px solid gold; border-radius: 15px;}
 .lid{position:absolute;width:100%;height:100%;background:gold;clip-path:polygon(0 0,50% 50%,100% 0);transform-origin:top;transition:1.2s;z-index: 2;}
 .letter{position:absolute;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index: 1; padding: 15px;}
 
-/* HERO */
-.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070') center/cover;}
+/* HERO DENGAN FOTO ANDA */
+.hero{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* LINK FOTO ANDA SUDAH DIPASANG DI SINI */
+    background: linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)), 
+                url('https://i.ibb.co.com/YT1wKN5v/wedding-photo.jpg') center/cover;
+    background-attachment: fixed;
+}
 
 /* KONTEN */
-.section{padding:60px 20px; opacity: 1; transform: none;} /* Matikan animasi sementara agar pasti terlihat */
+.section{padding:60px 20px;}
 .card{background:#111;margin:15px auto;padding:25px;border-radius:15px; border: 1px solid gold; max-width: 450px;}
-.btn{padding:15px 30px;background:gold;border:none;border-radius:30px;cursor:pointer; font-weight: bold; color: black; font-size: 16px; transition: 0.3s;}
-.btn:active{transform: scale(0.95);}
-.countdown{margin:20px; font-size: 22px; color: gold; font-weight: bold; letter-spacing: 1px;}
+.btn{padding:15px 30px;background:gold;border:none;border-radius:30px;cursor:pointer; font-weight: bold; color: black; font-size: 16px;}
+.countdown{margin:20px; font-size: 22px; color: gold; font-weight: bold;}
 
-/* EFEK EMAS */
+/* TOMBOL AUDIO DI POJOK */
+#audio-control {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 55px;
+    height: 55px;
+    background: gold;
+    border-radius: 50%;
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 9999;
+    color: black;
+    font-size: 24px;
+    box-shadow: 0 0 15px rgba(255,215,0,0.4);
+}
+
 .gold{position:fixed;width:4px;height:4px;background:gold;border-radius:50%;top:-10px;animation:fall linear infinite; z-index: 500; pointer-events: none;}
 @keyframes fall{to{transform:translateY(100vh)}}
-
-#rek{color:gold;letter-spacing:2px; font-size: 24px; margin: 10px 0;}
 </style>
 </head>
 
 <body>
 
-<div id="loader"><div class="loader-text">Memuat Undangan...</div></div>
+<div id="loader"><div class="loader-text">Memuat Bahagia...</div></div>
+
+<div id="audio-control" onclick="toggleMusic()">🎵</div>
 
 <div id="envelope">
   <div class="envelope-wrapper">
@@ -56,7 +82,6 @@ body{margin:0;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;backg
 </div>
 
 <div id="main-content" style="display:none">
-    
     <div class="hero">
         <h1 style="font-size: 45px; margin-bottom: 10px; color: gold;">Zilvi & Syamsul</h1>
         <p id="guest" style="font-size: 20px;"></p>
@@ -64,43 +89,26 @@ body{margin:0;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;backg
     </div>
 
     <div class="section">
-        <p style="font-style: italic;">"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya..."</p>
-    </div>
-
-    <div class="section">
         <div class="card">
-            <h2 style="color: gold; margin-bottom: 5px;">Zilvi Rizkiani Putri</h2>
+            <h2 style="color: gold;">Zilvi Rizkiani Putri</h2>
             <p>Putri dari Bpk. Drs. Masnuh & Ibu Arnita, S.Ag</p>
         </div>
         <h2 style="color: gold; font-family: serif;">&</h2>
         <div class="card">
-            <h2 style="color: gold; margin-bottom: 5px;">Syamsul Bahri</h2>
+            <h2 style="color: gold;">Syamsul Bahri</h2>
             <p>Putra dari Bpk. Zulir & Ibu Manidar</p>
         </div>
     </div>
 
     <div class="section">
         <div class="card">
-            <h3 style="border-bottom: 1px solid gold; padding-bottom: 10px; color: gold;">Akad Nikah</h3>
-            <p>Sabtu, 23 Mei 2026</p>
-            <p>14.00 WIB - Selesai</p>
+            <h3 style="color: gold; border-bottom: 1px solid gold; padding-bottom: 10px;">Waktu & Tempat</h3>
+            <p><strong>Akad & Resepsi:</strong><br>23 - 25 Mei 2026</p>
+            <p><strong>Lokasi:</strong><br>Kediaman Mempelai Wanita</p>
         </div>
-        <div class="card">
-            <h3 style="border-bottom: 1px solid gold; padding-bottom: 10px; color: gold;">Resepsi</h3>
-            <p>24 - 25 Mei 2026</p>
-            <p>Lokasi: Kediaman Mempelai Wanita</p>
-        </div>
-    </div>
-
-    <div class="section">
-        <a href="https://www.google.com/maps" target="_blank">
+        <a href="http://googleusercontent.com/maps.google.com/6" target="_blank">
             <button class="btn">LIHAT LOKASI MAPS</button>
         </a>
-    </div>
-
-    <div class="section">
-        <h3>Konfirmasi Kehadiran</h3>
-        <button class="btn" onclick="kirimWA()" style="background: #25D366; color: white; border: none;">RSVP VIA WHATSAPP</button>
     </div>
 
     <div class="section">
@@ -108,91 +116,88 @@ body{margin:0;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;backg
         <div class="card">
             <p>Bank BRI</p>
             <p>a/n Zilvi Rizkiani Putri</p>
-            <h2 id="rek">032101088548501</h2>
-            <button class="btn" onclick="copyRek()">SALIN NO. REKENING</button>
+            <h2 style="color:gold; font-size: 26px; margin: 10px 0;">032101088548501</h2>
+            <button class="btn" onclick="copyRek()">SALIN REKENING</button>
         </div>
     </div>
 
-    <footer style="padding: 40px 20px; font-size: 14px; color: #777; background: #050505;">
+    <footer style="padding: 40px; font-size: 12px; color: #555;">
         © 2026 Zilvi & Syamsul Wedding
     </footer>
 </div>
 
 <audio id="music" loop>
-    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mp3">
 </audio>
 
 <script>
-// 1. Loader otomatis hilang
-window.onload = () => {
-    setTimeout(() => {
-        document.getElementById("loader").style.display = "none";
-    }, 1000);
-};
+// Hilangkan Loader
+window.onload = () => { setTimeout(() => { document.getElementById("loader").style.display = "none"; }, 1000); };
 
-// 2. Ambil Nama Tamu
+// Ambil Nama Tamu dari URL
 const params = new URLSearchParams(window.location.search);
-const namaTamu = params.get("to");
-const guestDisplay = namaTamu ? decodeURIComponent(namaTamu.replace(/\+/g,' ')) : "Bapak/Ibu/Saudara/i";
+const namaTamu = params.get("to") ? decodeURIComponent(params.get("to").replace(/\+/g,' ')) : "Bapak/Ibu/Saudara/i";
+document.getElementById("guest").innerHTML = "Kepada Yth: <br><strong>" + namaTamu + "</strong>";
+document.getElementById("guestEnvelope").innerHTML = "Kepada Yth: <br><strong>" + namaTamu + "</strong>";
 
-document.getElementById("guest").innerHTML = "Kepada Yth: <br><strong>" + guestDisplay + "</strong>";
-document.getElementById("guestEnvelope").innerHTML = "Kepada Yth: <br><strong>" + guestDisplay + "</strong>";
+let isPlaying = false;
+const music = document.getElementById("music");
+const audioBtn = document.getElementById("audio-control");
 
-// 3. Fungsi Buka
 function openEnvelope(){
-    const music = document.getElementById("music");
-    const envelope = document.getElementById("envelope");
-    const mainContent = document.getElementById("main-content");
-    const lid = document.getElementById("lid");
-    
-    // Animasi tutup amplop
-    lid.style.transform = "rotateX(180deg)";
-    
+    document.getElementById("lid").style.transform = "rotateX(180deg)";
     setTimeout(() => {
-        envelope.style.transition = "1s";
-        envelope.style.opacity = "0";
-        
+        document.getElementById("envelope").style.transition = "1s";
+        document.getElementById("envelope").style.opacity = "0";
         setTimeout(() => {
-            envelope.style.display = "none";
-            mainContent.style.display = "block";
-            // Memulai Musik
-            music.play().catch(e => console.log("Musik butuh klik manual"));
+            document.getElementById("envelope").style.display = "none";
+            document.getElementById("main-content").style.display = "block";
+            audioBtn.style.display = "flex";
+            playMusic();
         }, 800);
     }, 600);
 }
 
-// 4. Countdown
-const targetDate = new Date("May 23, 2026 14:00:00").getTime();
-setInterval(() => {
-    const now = new Date().getTime();
-    const gap = targetDate - now;
-    
-    const d = Math.floor(gap / (1000 * 60 * 60 * 24));
-    const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
-    const s = Math.floor((gap % (1000 * 60)) / 1000);
-    
-    document.getElementById("countdown").innerHTML = d + " Hari " + h + " Jam " + m + " Menit " + s + " Detik ";
-}, 1000);
+function playMusic() {
+    music.play().catch(e => console.log("Autoplay dicegah browser"));
+    isPlaying = true;
+    audioBtn.innerHTML = "⏸️";
+}
 
-// 5. Fitur Tambahan
-function kirimWA(){
-    let text = "Halo Zilvi & Syamsul, saya (" + guestDisplay + ") insya Allah akan hadir.";
-    window.open("https://wa.me/6281266595366?text=" + encodeURIComponent(text));
+function toggleMusic() {
+    if (isPlaying) {
+        music.pause();
+        audioBtn.innerHTML = "▶️";
+    } else {
+        music.play();
+        audioBtn.innerHTML = "⏸️";
+    }
+    isPlaying = !isPlaying;
 }
 
 function copyRek(){
     navigator.clipboard.writeText("032101088548501");
-    alert("Nomor rekening disalin!");
+    alert("Nomor rekening berhasil disalin!");
 }
 
-// 6. Efek Partikel
+// Countdown Timer
+const targetDate = new Date("May 23, 2026 14:00:00").getTime();
+setInterval(() => {
+    const now = new Date().getTime();
+    const gap = targetDate - now;
+    const d = Math.floor(gap / (1000 * 60 * 60 * 24));
+    const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((gap % (1000 * 60)) / 1000);
+    document.getElementById("countdown").innerHTML = d + " Hari " + h + " Jam " + m + " Menit " + s + " Detik ";
+}, 1000);
+
+// Efek Partikel Emas
 for(let i=0; i<15; i++){
     let g = document.createElement("div");
     g.className = "gold";
     g.style.left = Math.random() * 100 + "%";
     g.style.animationDuration = (3 + Math.random() * 5) + "s";
-    g.style.animationDelay = Math.random() * 2 + "s";
     document.body.appendChild(g);
 }
 </script>

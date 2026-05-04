@@ -1,38 +1,199 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Undangan</title>
+<title>Zilvi & Syamsul Wedding</title>
+
+<style>
+body{margin:0;font-family:sans-serif;background:black;color:white;text-align:center;overflow-x:hidden}
+
+/* LOADER */
+#loader{position:fixed;width:100%;height:100%;background:black;display:flex;justify-content:center;align-items:center;z-index:99999}
+.loader-text{color:gold;font-size:28px;animation:fadeBlink 1.5s infinite}
+@keyframes fadeBlink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* CINEMATIC */
+#cinematic{position:fixed;width:100%;height:100%;background:black;z-index:99998;opacity:1;transition:2s}
+
+/* ENVELOPE */
+#envelope{position:fixed;width:100%;height:100%;background:black;display:flex;justify-content:center;align-items:center;z-index:9999}
+.envelope-wrapper{width:250px;height:180px;background:#111;position:relative}
+.lid{position:absolute;width:100%;height:100%;background:gold;clip-path:polygon(0 0,50% 50%,100% 0);transform-origin:top;transition:1s}
+.letter{position:absolute;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center}
+
+/* HERO */
+.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url('foto.jpg') center/cover;animation:zoom 20s infinite alternate}
+@keyframes zoom{from{background-size:100%}to{background-size:110%}}
+
+.section{padding:40px 20px;opacity:0;transform:translateY(40px);transition:1s}
+.section.show{opacity:1;transform:translateY(0)}
+
+.card{background:#111;margin:15px;padding:20px;border-radius:15px}
+.btn{padding:10px 20px;background:gold;border:none;border-radius:20px;cursor:pointer}
+.countdown{margin:10px}
+
+/* GOLD FALL */
+.gold{position:fixed;width:5px;height:5px;background:gold;border-radius:50%;top:-10px;animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(100vh)}}
+
+/* SPARK */
+.sparkle{position:fixed;width:6px;height:6px;background:gold;border-radius:50%;pointer-events:none;animation:spark .8s forwards}
+@keyframes spark{to{transform:translateY(20px) scale(0);opacity:0}}
+
+#rek{color:gold;letter-spacing:2px}
+</style>
 </head>
 
-<body style="background:black;color:white;text-align:center">
+<body>
 
+<div id="loader"><div class="loader-text">Zilvi & Syamsul</div></div>
+<div id="cinematic"></div>
+
+<div id="envelope">
+  <div class="envelope-wrapper">
+    <div class="lid"></div>
+    <div class="letter">
+      <h2>Zilvi & Syamsul</h2>
+      <p id="guestEnvelope"></p>
+      <button class="btn" onclick="openEnvelope()">Buka Undangan</button>
+    </div>
+  </div>
+</div>
+
+<div class="hero" id="opening" style="display:none">
 <h1>Zilvi & Syamsul</h1>
+<p id="guest"></p>
+<div class="countdown" id="countdown"></div>
+</div>
 
-<a id="waLink" href="#"><button>RSVP</button></a>
+<div id="main" style="display:none">
+
+<div class="section"><h2>Assalamu’alaikum</h2></div>
+
+<div class="section">
+<div class="card">
+<h2>Zilvi Rizkiani Putri</h2>
+<p>Putri dari Bpk. Drs. Masnuh & Ibu Arnita, S.Ag</p>
+</div>
+<div class="card">
+<h2>Syamsul Bahri</h2>
+<p>Putra dari Bpk. Zulir & Ibu Manidar</p>
+</div>
+</div>
+
+<div class="section">
+<div class="card">
+<h2>Akad</h2>
+<p>23 Mei 2026 - 14.00 WIB</p>
+</div>
+<div class="card">
+<h2>Resepsi</h2>
+<p>24-25 Mei 2026</p>
+</div>
+</div>
+
+<div class="section">
+<a href="https://maps.app.goo.gl/WhMRr26X5GS6368p7">
+<button class="btn">Buka Maps</button>
+</a>
+</div>
+
+<div class="section">
+<button class="btn" onclick="kirimWA()">RSVP WhatsApp</button>
+</div>
+
+<div class="section">
+<h2>Kirim Hadiah</h2>
+<div class="card">
+<p>Bank BRI</p>
+<p>a/n Zilvi Rizkiani Putri</p>
+<h2 id="rek">032101088548501</h2>
+<button class="btn" onclick="copyRek()">Salin</button>
+</div>
+</div>
+
+</div>
 
 <audio id="music" loop>
 <source src="https://cdn.pixabay.com/download/audio/2023/03/06/audio_124bfa.mp3">
 </audio>
 
-<button onclick="openInvite()">Buka Undangan</button>
+<audio id="click">
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9b.mp3">
+</audio>
 
 <script>
-function openInvite(){
-  document.getElementById("music").play().catch(()=>{});
-}
+window.onload=()=>{setTimeout(()=>{loader.style.display="none";cinematic.style.opacity=0},1500)}
 
-const params = new URLSearchParams(window.location.search);
-const nama = params.get("to");
-
-let pesan = "Saya akan hadir";
+const params=new URLSearchParams(location.search);
+const nama=params.get("to");
 
 if(nama){
-  pesan = "Saya " + decodeURIComponent(nama) + " akan hadir";
+let n=decodeURIComponent(nama.replace(/\+/g,' '));
+guest.innerHTML="Kepada Yth: "+n;
+guestEnvelope.innerHTML="Kepada Yth: "+n;
 }
 
-const waURL = "https://wa.me/6281266595366?text=" + encodeURIComponent(pesan);
-document.getElementById("waLink").href = waURL;
+function openEnvelope(){
+click.play();
+document.querySelector('.lid').style.transform="rotateX(180deg)";
+setTimeout(()=>{
+envelope.style.display="none";
+main.style.display="block";
+music.play().catch(()=>{});
+},1000);
+}
+
+const target=new Date("May 23, 2026 14:00").getTime();
+setInterval(()=>{
+let now=new Date().getTime();
+let d=target-now;
+let dd=Math.floor(d/(1000*60*60*24));
+let hh=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+let mm=Math.floor((d%(1000*60*60))/(1000*60));
+let ss=Math.floor((d%(1000*60))/1000);
+countdown.innerHTML=dd+"H "+hh+"J "+mm+"M "+ss+"D";
+},1000);
+
+function kirimWA(){
+let msg="Saya akan hadir";
+if(nama) msg="Saya "+nama+" akan hadir";
+window.open("https://wa.me/6281266595366?text="+encodeURIComponent(msg));
+}
+
+function copyRek(){
+navigator.clipboard.writeText("032101088548501");
+alert("Rekening disalin");
+}
+
+/* efek */
+for(let i=0;i<25;i++){
+let g=document.createElement("div");
+g.className="gold";
+g.style.left=Math.random()*100+"%";
+g.style.animationDuration=(3+Math.random()*5)+"s";
+document.body.appendChild(g);
+}
+
+document.addEventListener("mousemove",spark);
+document.addEventListener("touchmove",spark);
+
+function spark(e){
+let x=e.touches?e.touches[0].clientX:e.clientX;
+let y=e.touches?e.touches[0].clientY:e.clientY;
+let s=document.createElement("div");
+s.className="sparkle";
+s.style.left=x+"px";s.style.top=y+"px";
+document.body.appendChild(s);
+setTimeout(()=>s.remove(),800);
+}
+
+/* scroll animasi */
+const obs=new IntersectionObserver(e=>{
+e.forEach(x=>{if(x.isIntersecting)x.target.classList.add("show")})
+});
+document.querySelectorAll(".section").forEach(el=>obs.observe(el));
 </script>
 
 </body>

@@ -29,7 +29,6 @@ body{margin:0;font-family: 'Montserrat', sans-serif;background:black;color:white
     background-attachment: fixed;
 }
 
-/* TULISAN NAMA MEWAH */
 .nama-pengantin {
     font-family: 'Great Vibes', cursive;
     font-size: 70px;
@@ -45,7 +44,6 @@ body{margin:0;font-family: 'Montserrat', sans-serif;background:black;color:white
 .section{padding:60px 20px;}
 .card{background:rgba(20, 20, 20, 0.95); margin:15px auto; padding:25px; border-radius:15px; border: 1px solid rgba(212, 175, 55, 0.5); max-width: 450px; box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);}
 .btn {padding:12px 25px; background: linear-gradient(45deg, #bf953f, #fcf6ba); border:none; border-radius:30px; cursor:pointer; font-weight: bold; color: #333; font-size: 14px; transition: 0.3s; text-decoration: none; display: inline-block; margin: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);}
-.btn:hover {transform: translateY(-2px); box-shadow: 0 6px 15px rgba(212, 175, 55, 0.3);}
 
 /* RSVP INPUT */
 .rsvp-input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid gold; background: #222; color: white; font-family: 'Montserrat', sans-serif; }
@@ -56,10 +54,10 @@ body{margin:0;font-family: 'Montserrat', sans-serif;background:black;color:white
 @keyframes fadeBlink{0%,100%{opacity:1}50%{opacity:.3}}
 </style>
 </head>
-<body>
+<body onclick="playMusicOnce()">
 
 <div id="loader"><div class="loader-text">Memuat Bahagia...</div></div>
-<div id="audio-control" onclick="toggleMusic()">🎵</div>
+<div id="audio-control" onclick="toggleMusic(event)">🎵</div>
 
 <div id="main-content">
     <div class="hero">
@@ -82,20 +80,20 @@ body{margin:0;font-family: 'Montserrat', sans-serif;background:black;color:white
 
     <div class="section">
         <div class="card">
-            <h3 style="color: gold; border-bottom: 1px solid gold; padding-bottom:10px; font-size: 18px;">AKAD NIKAH</h3>
+            <h3 style="color: gold; border-bottom: 1px solid gold; padding-bottom:10px;">AKAD NIKAH</h3>
             <p><strong>Jumat, 22 Mei 2026</strong><br>Pukul 14.00 WIB</p>
             <p style="font-size: 14px;">Mesjid Taqwa Koto Magek, Balai Baiak</p>
         </div>
         <div class="card">
-            <h3 style="color: gold; border-bottom: 1px solid gold; padding-bottom:10px; font-size: 18px;">RESEPSI</h3>
+            <h3 style="color: gold; border-bottom: 1px solid gold; padding-bottom:10px;">RESEPSI</h3>
             <p><strong>24 - 25 Mei 2026</strong><br>Pukul 10.00 WIB - Selesai</p>
             <p style="font-size: 14px;">Kediaman Mempelai Wanita</p>
-            <a href="https://maps.app.goo.gl/7ffRHa16y9LPCHgy6" target="_blank" class="btn">LIHAT LOKASI</a>
+            <a href="https://maps.google.com" target="_blank" class="btn">LIHAT LOKASI</a>
         </div>
     </div>
 
     <div class="section">
-        <h2 style="color: gold; font-size: 22px;">RESERVASI</h2>
+        <h2 style="color: gold;">RESERVASI</h2>
         <div class="card">
             <input type="text" id="rsvpName" class="rsvp-input" placeholder="Nama Anda">
             <select id="rsvpStatus" class="rsvp-input">
@@ -107,11 +105,10 @@ body{margin:0;font-family: 'Montserrat', sans-serif;background:black;color:white
     </div>
 
     <div class="section">
-        <h2 style="color: gold; font-size: 22px;">KADO DIGITAL</h2>
+        <h2 style="color: gold;">KADO DIGITAL</h2>
         <div class="card">
-            <p style="font-size: 13px;">Terima kasih atas tanda kasih Anda:</p>
-            <p style="margin-top: 20px; font-size: 14px;"><strong>BANK BRI</strong></p>
-            <h2 style="color: gold; letter-spacing: 2px; font-size: 24px;">032101088548501</h2>
+            <p style="font-size: 14px;"><strong>BANK BRI</strong></p>
+            <h2 style="color: gold; letter-spacing: 2px;">032101088548501</h2>
             <p style="font-size: 13px;">a/n Zilvi Rizkiani Putri</p>
             <button class="btn" onclick="copyRek()">SALIN NO. REKENING</button>
         </div>
@@ -123,7 +120,7 @@ body{margin:0;font-family: 'Montserrat', sans-serif;background:black;color:white
 </div>
 
 <audio id="music" loop>
-    <source src="https://www.dropbox.com/scl/fi/f9479b1w5a82n89itf6j1/Payung-Teduh-Akad.mp3?rlkey=3t3g1u42q39f0f977p6z3w857&st=6f2u1j0e&dl=1" type="audio/mp3">
+    <source src="https://files.catbox.moe/1f9jue.mp3" type="audio/mp3">
 </audio>
 
 <script>
@@ -133,21 +130,27 @@ let isPlaying = false;
 const music = document.getElementById("music");
 const audioBtn = document.getElementById("audio-control");
 
+function playMusicOnce() {
+    if(!isPlaying) {
+        music.play().then(() => {
+            isPlaying = true;
+            audioBtn.style.display = "flex";
+            audioBtn.innerHTML = "⏸️";
+        }).catch(() => {});
+    }
+}
+
 function startInvitation() {
     music.play().then(() => {
         isPlaying = true;
         audioBtn.innerHTML = "⏸️";
         audioBtn.style.display = "flex";
-    }).catch(error => {
-        isPlaying = false;
-        audioBtn.style.display = "flex";
-        audioBtn.innerHTML = "▶️";
     });
-    
     window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
 }
 
-function toggleMusic() {
+function toggleMusic(event) {
+    event.stopPropagation();
     if (isPlaying) { 
         music.pause(); 
         audioBtn.innerHTML = "▶️";
@@ -159,18 +162,14 @@ function toggleMusic() {
 }
 
 function copyRek(){
-    const textToCopy = "032101088548501";
-    navigator.clipboard.writeText(textToCopy).then(() => {
-        alert("Nomor rekening berhasil disalin!");
-    });
+    navigator.clipboard.writeText("032101088548501").then(() => alert("Disalin!"));
 }
 
 function sendRSVP() {
     const name = document.getElementById("rsvpName").value;
     const status = document.getElementById("rsvpStatus").value;
-    if(!name) { alert("Masukkan nama Anda"); return; }
-    const text = `Halo Zilvi & Syamsul, saya ${name} mengonfirmasi akan ${status} di acara pernikahan kalian.`;
-    window.open(`https://wa.me/6281266595366?text=${encodeURIComponent(text)}`, '_blank');
+    if(!name) { alert("Nama?"); return; }
+    window.open(`https://wa.me/6281266595366?text=Saya ${name} konfirmasi ${status}`, '_blank');
 }
 
 // Countdown
@@ -178,13 +177,8 @@ const target = new Date("May 22, 2026 14:00:00").getTime();
 setInterval(() => {
     const now = new Date().getTime();
     const diff = target - now;
-    if (diff < 0) {
-        document.getElementById("countdown").innerHTML = "HARI BAHAGIA";
-        return;
-    }
     const d = Math.floor(diff / (1000 * 60 * 60 * 24));
     const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     document.getElementById("countdown").innerHTML = d + " Hari " + h + " Jam Menuju Akad";
 }, 1000);
 </script>

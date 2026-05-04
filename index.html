@@ -6,6 +6,7 @@
 <title>Undangan Zilvi & Syamsul</title>
 
 <style>
+/* DASAR & FONT */
 *{box-sizing: border-box;}
 body{margin:0;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;background:black;color:white;text-align:center;overflow-x:hidden}
 
@@ -14,32 +15,32 @@ body{margin:0;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;backg
 .loader-text{color:gold;font-size:24px;animation:fadeBlink 1s infinite}
 @keyframes fadeBlink{0%,100%{opacity:1}50%{opacity:.3}}
 
-/* ENVELOPE */
+/* ENVELOPE (AMPLOP) */
 #envelope{position:fixed;width:100%;height:100%;background:#0a0a0a;display:flex;justify-content:center;align-items:center;z-index:1000}
-.envelope-wrapper{width:300px;height:220px;background:#1a1a1a;position:relative;border: 2px solid gold; border-radius: 15px;}
+.envelope-wrapper{width:300px;height:220px;background:#1a1a1a;position:relative;border: 2px solid gold; border-radius: 15px; box-shadow: 0 0 20px rgba(212,175,55,0.3);}
 .lid{position:absolute;width:100%;height:100%;background:gold;clip-path:polygon(0 0,50% 50%,100% 0);transform-origin:top;transition:1.2s;z-index: 2;}
 .letter{position:absolute;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index: 1; padding: 15px;}
 
-/* HERO DENGAN FOTO ANDA */
+/* HERO (HALAMAN UTAMA) DENGAN FOTO ANDA */
 .hero{
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* LINK FOTO ANDA SUDAH DIPASANG DI SINI */
     background: linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)), 
-                url('https://i.ibb.co.com/YT1wKN5v/wedding-photo.jpg') center/cover;
+                url('cf201570-1df7-11f1-99ed-01b77077a0bb.jpg') center/cover;
     background-attachment: fixed;
 }
 
-/* KONTEN */
+/* KONTEN & KARTU */
 .section{padding:60px 20px;}
 .card{background:#111;margin:15px auto;padding:25px;border-radius:15px; border: 1px solid gold; max-width: 450px;}
-.btn{padding:15px 30px;background:gold;border:none;border-radius:30px;cursor:pointer; font-weight: bold; color: black; font-size: 16px;}
+.btn{padding:15px 30px;background:gold;border:none;border-radius:30px;cursor:pointer; font-weight: bold; color: black; font-size: 16px; transition: 0.3s;}
+.btn:active{transform: scale(0.95);}
 .countdown{margin:20px; font-size: 22px; color: gold; font-weight: bold;}
 
-/* TOMBOL AUDIO DI POJOK */
+/* TOMBOL MUSIK POJOK */
 #audio-control {
     position: fixed;
     bottom: 25px;
@@ -58,6 +59,7 @@ body{margin:0;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;backg
     box-shadow: 0 0 15px rgba(255,215,0,0.4);
 }
 
+/* EFEK PARTIKEL EMAS */
 .gold{position:fixed;width:4px;height:4px;background:gold;border-radius:50%;top:-10px;animation:fall linear infinite; z-index: 500; pointer-events: none;}
 @keyframes fall{to{transform:translateY(100vh)}}
 </style>
@@ -82,6 +84,7 @@ body{margin:0;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;backg
 </div>
 
 <div id="main-content" style="display:none">
+    
     <div class="hero">
         <h1 style="font-size: 45px; margin-bottom: 10px; color: gold;">Zilvi & Syamsul</h1>
         <p id="guest" style="font-size: 20px;"></p>
@@ -90,12 +93,13 @@ body{margin:0;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;backg
 
     <div class="section">
         <div class="card">
-            <h2 style="color: gold;">Zilvi Rizkiani Putri</h2>
+            <img src="48351.jpg" style="width: 100%; border-radius: 10px; margin-bottom: 15px;">
+            <h2 style="color: gold; margin-bottom: 5px;">Zilvi Rizkiani Putri</h2>
             <p>Putri dari Bpk. Drs. Masnuh & Ibu Arnita, S.Ag</p>
         </div>
         <h2 style="color: gold; font-family: serif;">&</h2>
         <div class="card">
-            <h2 style="color: gold;">Syamsul Bahri</h2>
+            <h2 style="color: gold; margin-bottom: 5px;">Syamsul Bahri</h2>
             <p>Putra dari Bpk. Zulir & Ibu Manidar</p>
         </div>
     </div>
@@ -106,7 +110,7 @@ body{margin:0;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;backg
             <p><strong>Akad & Resepsi:</strong><br>23 - 25 Mei 2026</p>
             <p><strong>Lokasi:</strong><br>Kediaman Mempelai Wanita</p>
         </div>
-        <a href="http://googleusercontent.com/maps.google.com/6" target="_blank">
+        <a href="https://maps.google.com" target="_blank">
             <button class="btn">LIHAT LOKASI MAPS</button>
         </a>
     </div>
@@ -121,20 +125,24 @@ body{margin:0;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;backg
         </div>
     </div>
 
-    <footer style="padding: 40px; font-size: 12px; color: #555;">
+    <footer style="padding: 40px; font-size: 12px; color: #555; background: #050505;">
         © 2026 Zilvi & Syamsul Wedding
     </footer>
 </div>
 
 <audio id="music" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mp3">
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
 </audio>
 
 <script>
 // Hilangkan Loader
-window.onload = () => { setTimeout(() => { document.getElementById("loader").style.display = "none"; }, 1000); };
+window.onload = () => {
+    setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
+    }, 1000);
+};
 
-// Ambil Nama Tamu dari URL
+// Ambil Nama Tamu dari URL (?to=Nama+Tamu)
 const params = new URLSearchParams(window.location.search);
 const namaTamu = params.get("to") ? decodeURIComponent(params.get("to").replace(/\+/g,' ')) : "Bapak/Ibu/Saudara/i";
 document.getElementById("guest").innerHTML = "Kepada Yth: <br><strong>" + namaTamu + "</strong>";
@@ -144,6 +152,7 @@ let isPlaying = false;
 const music = document.getElementById("music");
 const audioBtn = document.getElementById("audio-control");
 
+// Fungsi Buka Amplop
 function openEnvelope(){
     document.getElementById("lid").style.transform = "rotateX(180deg)";
     setTimeout(() => {
@@ -159,7 +168,7 @@ function openEnvelope(){
 }
 
 function playMusic() {
-    music.play().catch(e => console.log("Autoplay dicegah browser"));
+    music.play().catch(e => console.log("Musik tertunda"));
     isPlaying = true;
     audioBtn.innerHTML = "⏸️";
 }
@@ -177,7 +186,7 @@ function toggleMusic() {
 
 function copyRek(){
     navigator.clipboard.writeText("032101088548501");
-    alert("Nomor rekening berhasil disalin!");
+    alert("Nomor rekening disalin!");
 }
 
 // Countdown Timer
@@ -192,7 +201,7 @@ setInterval(() => {
     document.getElementById("countdown").innerHTML = d + " Hari " + h + " Jam " + m + " Menit " + s + " Detik ";
 }, 1000);
 
-// Efek Partikel Emas
+// Efek Partikel
 for(let i=0; i<15; i++){
     let g = document.createElement("div");
     g.className = "gold";

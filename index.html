@@ -28,7 +28,7 @@ body{margin:0;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;backg
     justify-content: center;
     align-items: center;
     background: linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)), 
-                url('cf201570-1df7-11f1-99ed-01b77077a0bb.jpg') center/cover;
+                url('22022.jpg') center/cover;
     background-attachment: fixed;
 }
 
@@ -107,7 +107,7 @@ body{margin:0;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;backg
         
         <div class="card">
             <h3 style="color: gold; border-bottom: 1px solid gold; padding-bottom: 10px;">Akad Nikah</h3>
-            <p><strong>Sabtu, 23 Mei 2026</strong></p>
+            <p><strong>Jumat, 22 Mei 2026</strong></p>
             <p>Pukul 14.00 WIB</p>
             <p>Lokasi:<br><strong>Mesjid Taqwa Koto Magek</strong><br>Balai Baiak</p>
             <a href="http://googleusercontent.com/maps.google.com/9" target="_blank" class="btn">LIHAT LOKASI AKAD</a>
@@ -118,7 +118,7 @@ body{margin:0;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;backg
             <p><strong>24 - 25 Mei 2026</strong></p>
             <p>Pukul 10.00 WIB s/d Selesai</p>
             <p>Lokasi:<br><strong>Kediaman Mempelai Wanita</strong></p>
-            <a href="https://maps.app.goo.gl/Tx99TrB7qfLSzjNB80" target="_blank" class="btn">LIHAT LOKASI RESEPSI</a>
+            <a href="https://maps.app.goo.gl/7ffRHa16y9LPCHgy6" target="_blank" class="btn">LIHAT LOKASI RESEPSI</a>
         </div>
     </div>
 
@@ -185,7 +185,8 @@ function copyRek(){
     alert("Nomor rekening disalin!");
 }
 
-const targetDate = new Date("May 23, 2026 14:00:00").getTime();
+// Hitung mundur diarahkan ke tanggal akad yang baru
+const targetDate = new Date("May 22, 2026 14:00:00").getTime();
 setInterval(() => {
     const now = new Date().getTime();
     const gap = targetDate - now;

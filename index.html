@@ -76,8 +76,12 @@ h1 {
 
 <div class="section">
   <h2>RSVP</h2>
-  <a href="https://wa.me/6281266595366" class="btn">Konfirmasi Kehadiran</a>
-</div>
+if(nama){
+  document.getElementById("waLink").href =
+  "https://wa.me/6281266595366?text=Assalamu'alaikum,%20saya%20" + 
+  encodeURIComponent(nama) + 
+  "%20akan%20hadir%20di%20pernikahan%20Zilvi%20&%20Syamsul";
+}
 
 </div>
 

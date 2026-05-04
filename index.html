@@ -20,7 +20,7 @@ body{margin:0;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;backg
 .lid{position:absolute;width:100%;height:100%;background:gold;clip-path:polygon(0 0,50% 50%,100% 0);transform-origin:top;transition:1.2s;z-index: 2;}
 .letter{position:absolute;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index: 1; padding: 15px;}
 
-/* HERO (HALAMAN UTAMA) */
+/* HERO */
 .hero{
     height: 100vh;
     display: flex;
@@ -38,6 +38,18 @@ body{margin:0;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;backg
 .btn{padding:12px 25px;background:gold;border:none;border-radius:30px;cursor:pointer; font-weight: bold; color: black; font-size: 14px; transition: 0.3s; text-decoration: none; display: inline-block; margin-top: 10px;}
 .btn:active{transform: scale(0.95);}
 .countdown{margin:20px; font-size: 22px; color: gold; font-weight: bold;}
+
+/* RSVP FORM STYLE */
+.rsvp-input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid gold;
+    background: #222;
+    color: white;
+}
+select.rsvp-input { background: #222; color: white; }
 
 /* TOMBOL MUSIK POJOK */
 #audio-control {
@@ -123,6 +135,20 @@ body{margin:0;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;backg
     </div>
 
     <div class="section">
+        <h2 style="color: gold;">Reservasi Kehadiran</h2>
+        <div class="card">
+            <p>Mohon konfirmasi kehadiran Anda:</p>
+            <input type="text" id="rsvpName" class="rsvp-input" placeholder="Nama Lengkap">
+            <select id="rsvpStatus" class="rsvp-input">
+                <option value="Hadir">Hadir</option>
+                <option value="Berhalangan Hadir">Berhalangan Hadir</option>
+                <option value="Masih Ragu">Masih Ragu</option>
+            </select>
+            <button class="btn" onclick="sendRSVP()">Kirim Konfirmasi</button>
+        </div>
+    </div>
+
+    <div class="section">
         <h2>Kirim Hadiah</h2>
         <div class="card">
             <p>Bank BRI</p>
@@ -148,6 +174,7 @@ const params = new URLSearchParams(window.location.search);
 const namaTamu = params.get("to") ? decodeURIComponent(params.get("to").replace(/\+/g,' ')) : "Bapak/Ibu/Saudara/i";
 document.getElementById("guest").innerHTML = "Kepada Yth: <br><strong>" + namaTamu + "</strong>";
 document.getElementById("guestEnvelope").innerHTML = "Kepada Yth: <br><strong>" + namaTamu + "</strong>";
+document.getElementById("rsvpName").value = namaTamu !== "Bapak/Ibu/Saudara/i" ? namaTamu : "";
 
 let isPlaying = false;
 const music = document.getElementById("music");
@@ -169,6 +196,21 @@ function openEnvelope(){
     }, 600);
 }
 
+function sendRSVP() {
+    const name = document.getElementById("rsvpName").value;
+    const status = document.getElementById("rsvpStatus").value;
+    const phone = "6281266595366";
+    
+    if (name.trim() === "") {
+        alert("Silakan masukkan nama Anda.");
+        return;
+    }
+
+    const text = `Halo Zilvi & Syamsul, saya *${name}* ingin mengonfirmasi bahwa saya *${status}* di acara pernikahan kalian. Terima kasih!`;
+    const url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+}
+
 function toggleMusic() {
     if (isPlaying) {
         music.pause();
@@ -185,7 +227,6 @@ function copyRek(){
     alert("Nomor rekening disalin!");
 }
 
-// Hitung mundur diarahkan ke tanggal akad yang baru
 const targetDate = new Date("May 22, 2026 14:00:00").getTime();
 setInterval(() => {
     const now = new Date().getTime();

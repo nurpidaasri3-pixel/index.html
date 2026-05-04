@@ -35,7 +35,7 @@ body{margin:0;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;backg
 /* KONTEN & KARTU */
 .section{padding:60px 20px;}
 .card{background:#111;margin:15px auto;padding:25px;border-radius:15px; border: 1px solid gold; max-width: 450px;}
-.btn{padding:15px 30px;background:gold;border:none;border-radius:30px;cursor:pointer; font-weight: bold; color: black; font-size: 16px; transition: 0.3s;}
+.btn{padding:10px 20px;background:gold;border:none;border-radius:30px;cursor:pointer; font-weight: bold; color: black; font-size: 14px; transition: 0.3s; text-decoration: none; display: inline-block; margin-top: 10px;}
 .btn:active{transform: scale(0.95);}
 .countdown{margin:20px; font-size: 22px; color: gold; font-weight: bold;}
 
@@ -76,7 +76,7 @@ body{margin:0;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;backg
       <h3 style="margin:0; color: gold; font-size: 14px;">The Wedding of</h3>
       <h2 style="margin:10px 0; font-size: 22px;">Zilvi & Syamsul</h2>
       <p id="guestEnvelope" style="font-size: 13px; margin-bottom: 15px;"></p>
-      <button class="btn" onclick="openEnvelope()">BUKA UNDANGAN</button>
+      <button class="btn" style="padding:15px 30px" onclick="openEnvelope()">BUKA UNDANGAN</button>
     </div>
   </div>
 </div>
@@ -108,18 +108,18 @@ body{margin:0;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;backg
         <div class="card">
             <h3 style="color: gold; border-bottom: 1px solid gold; padding-bottom: 10px;">Akad Nikah</h3>
             <p><strong>Sabtu, 23 Mei 2026</strong></p>
-            <p>Lokasi:<br><strong>Mesjid Taqwa Kota Magek</strong></p>
+            <p>Pukul 14.00 WIB</p>
+            <p>Lokasi:<br><strong>Mesjid Taqwa Koto Magek</strong><br>Balai Baiak</p>
+            <a href="https://www.google.com/maps/search/Mesjid+Taqwa+Koto+Magek" target="_blank" class="btn">LIHAT LOKASI AKAD</a>
         </div>
 
         <div class="card">
             <h3 style="color: gold; border-bottom: 1px solid gold; padding-bottom: 10px;">Resepsi</h3>
             <p><strong>24 - 25 Mei 2026</strong></p>
+            <p>Pukul 10.00 WIB s/d Selesai</p>
             <p>Lokasi:<br><strong>Kediaman Mempelai Wanita</strong></p>
+            <a href="https://www.google.com/maps/search/Magek" target="_blank" class="btn">LIHAT LOKASI RESEPSI</a>
         </div>
-        
-        <a href="https://www.google.com/maps" target="_blank">
-            <button class="btn">LIHAT LOKASI MAPS</button>
-        </a>
     </div>
 
     <div class="section">
@@ -185,7 +185,7 @@ function copyRek(){
     alert("Nomor rekening disalin!");
 }
 
-const targetDate = new Date("May 23, 2026 09:00:00").getTime();
+const targetDate = new Date("May 23, 2026 14:00:00").getTime();
 setInterval(() => {
     const now = new Date().getTime();
     const gap = targetDate - now;
